@@ -15,8 +15,8 @@ namespace ToDoList.Controllers
       [HttpGet("/List")]
       public ActionResult Inventory()
       {
-        List<ToDo> allItems = ToDo.GetAll();
-        return View("Inventory", allItems);
+        List<ToDoVariables> allItems = ToDoVariables.GetAll();
+        return View("List", allItems);
       }
 
       [HttpGet("/AddItem")]
@@ -25,28 +25,26 @@ namespace ToDoList.Controllers
         return View("AddItem");
       }
 
-      [HttpPost("/CreateItem")]
+      [HttpPost("/createitem")]
       public ActionResult CreateItem()
       {
-         var item = (Request.Form["item"]);
+         var type = (Request.Form["item"]);
          var date = (Request.Form["date"]);
          var description = (Request.Form["description"]);
          var importance = (Request.Form["importance"]);
-         ToDo newItem = new ToDo(item, date, description, importance);
+         ToDoVariables newItem = new ToDoVariables(type, date, description, importance);
          newItem.Save();
-         List<ToDo> allItems = ToDo.GetAll();
+         List<ToDoVariables> allItems = ToDoVariables.GetAll();
          return View("List", allItems);
       }
-
-
 
       [HttpGet("/delete")]
       public ActionResult Delete()
       {
-        List<ToDo> allItems = ToDo.GetAll();
+        List<ToDoVariables> allItems = ToDoVariables.GetAll();
         int itemId = int.Parse((Request.Query["id"]));
         allItems.RemoveAt(itemId);
-        return View("Inventory", allItems);
+        return View("List", allItems);
       }
 
     }

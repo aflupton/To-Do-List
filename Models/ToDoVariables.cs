@@ -2,32 +2,32 @@ using System.Collections.Generic;
 
 namespace ToDoList.Models
 {
-  public class ToDo
+  public class ToDoVariables
   {
-    private string _item;
+    private string _type;
     private string _date;
     private string _description;
     private string _importance;
     private int _id;
 
-    public ToDo(string item, string date, string description, string importance)
+    public ToDoVariables(string type, string date, string description, string importance)
       {
-        _item = item;
+        _type = type;
         _date = date;
         _description = description;
         _importance = importance;
         _id = _instances.Count;
       }
-    public static List<ToDo> _instances = new List<ToDo> {};
+    public static List<ToDoVariables> _instances = new List<ToDoVariables> {};
 
-    public string GetItem()
+    public string GetType()
     {
-      return _item;
+      return _type;
     }
 
-    public void SetItem(string newItem)
+    public void SetType(string newType)
     {
-      _item = newItem;
+      _type = newType;
     }
 
     public string GetDate()
@@ -63,10 +63,15 @@ namespace ToDoList.Models
     {
       return _id;
     }
-    public static List<ToDo> GetAll()
+
+    public static List<ToDoVariables> GetAll()
     {
       return _instances;
     }
+    // public void SetAll(string newInstances)
+    // {
+    //   _instances = newInstances;
+    // }
     public void Save()
     {
       _instances.Add(this);

@@ -6,6 +6,39 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
   </head>
   <body>
-    <h1>To-Do List</h1>
+    <div class="container">
+      <h1 class="Display-1"><em>To-Do List</em></h1>
+      <h3><em>List items</em></h3>
+      <div class="row">
+        <div class="col-md-4">
+          <ul>
+              @{var count = 0;}
+              @foreach(var item in Model)
+              {
+                count++;
+                <div class="row">
+                  <!-- <div class="col-md-4"> -->
+                    <h4><strong>List Item: #@count</strong></h4>
+                    <p><em>Item: </em><strong>@item.GetType()</strong></p>
+                    <p><em>Complete by: </em><strong>@item.GetDate()</strong></p>
+                  <!-- </div> -->
+                  <!-- <div class="col-md-4"> -->
+                    <p><em>Description: </em><strong>@item.GetDescription()</strong></p>
+                    <p><em>Importance: </em><strong>@item.GetImportance()</strong></p>
+                    <p><strong>@Html.ActionLink("Delete", "Delete", new
+                      {id=@item.GetId()})</strong></p>
+                  <!-- </div> -->
+                </div>
+                <br>
+                <br>
+              }
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <button type='submit' class='btn btn-info'><a href="/AddItem"><em>Add another item</em></a></button>
+          <button type='submit' class='btn btn-info'><a href="/"><em>Home</em></a></button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
