@@ -1,63 +1,63 @@
 using System.Collections.Generic;
 
-namespace ToDo.Models
+namespace ToDoList.Models
 {
   public class ToDo
   {
-    private string _make;
-    private string _model;
-    private string _year;
-    private string _price;
+    private string _item;
+    private string _date;
+    private string _description;
+    private string _importance;
     private int _id;
 
-    public ToDo(string make, string model, string year, string price)
+    public ToDo(string item, string date, string description, string importance)
       {
-        _make = make;
-        _model = model;
-        _year = year;
-        _price = price;
+        _item = item;
+        _date = date;
+        _description = description;
+        _importance = importance;
         _id = _instances.Count;
       }
     public static List<ToDo> _instances = new List<ToDo> {};
 
-    public string GetMake()
+    public string GetItem()
     {
-      return _make;
+      return _item;
     }
 
-    public void SetMake(string newMake)
+    public void SetItem(string newItem)
     {
-      _make = newMake;
+      _item = newItem;
     }
 
-    public string GetModel()
+    public string GetDate()
     {
-      return _model;
+      return _date;
     }
 
-    public void SetModel(string newModel)
+    public void SetDate(string newDate)
     {
-      _model = newModel;
+      _date = newDate;
     }
 
-    public string GetYear()
+    public string GetDescription()
     {
-      return _year;
+      return _description;
     }
 
-    public void SetYear(string newYear)
+    public void SetDescription(string newDescription)
     {
-      _year = newYear;
+      _description = newDescription;
     }
 
-    public string GetPrice()
+    public string GetImportance()
     {
-      return _price;
+      return _importance;
     }
 
-    public void SetPrice(string newPrice)
+    public void SetImportance(string newImportance)
     {
-      _price = newPrice;
+      _importance = newImportance;
     }
     public int GetId()
     {
