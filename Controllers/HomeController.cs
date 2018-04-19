@@ -13,19 +13,19 @@ namespace ToDoList.Controllers
       }
 
       [HttpGet("/List")]
-      public ActionResult Inventory()
+      public ActionResult List()
       {
         List<ToDoVariables> allItems = ToDoVariables.GetAll();
         return View("List", allItems);
       }
 
-      [HttpGet("/AddItem")]
-      public ActionResult AddItem()
+      [HttpGet("/List/AddItem")]
+      public ActionResult CreateForm()
       {
         return View("AddItem");
       }
 
-      [HttpPost("/createitem")]
+      [HttpPost("/List/CreateItem")]
       public ActionResult CreateItem()
       {
          var type = (Request.Form["item"]);
@@ -38,7 +38,14 @@ namespace ToDoList.Controllers
          return View("List", allItems);
       }
 
-      [HttpGet("/delete")]
+      // [HttpGet("/List/Details/{id}")]
+      // public ActionResult Details(int id)
+      // {
+      //   ToDoVariables item = ToDoVariables.Find(id);
+      //   return View("Details", item);
+      // }
+
+      [HttpGet("/List/Delete")]
       public ActionResult Delete()
       {
         List<ToDoVariables> allItems = ToDoVariables.GetAll();
@@ -46,6 +53,8 @@ namespace ToDoList.Controllers
         allItems.RemoveAt(itemId);
         return View("List", allItems);
       }
+
+
 
     }
 

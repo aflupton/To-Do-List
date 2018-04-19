@@ -17,7 +17,7 @@
               {
                 count++;
                 <div class="row">
-                    <h4><strong>List Item: #<a href="/List/Details/@item.GetId()">@item.GetId()</a></strong></h4>
+                  <h4><strong>List Item: #@count</strong></h4>
                     <p><em>Item: </em><strong>@item.GetType()</strong></p>
                     <p><em>Complete by: </em><strong>@item.GetDate()</strong></p>
                     <p><em>Description: </em><strong>@item.GetDescription()</strong></p>
@@ -28,14 +28,14 @@
                 <br>
                 <br>
               }
-              <!-- @foreach(var item in Model)
-              {
-                <p></p>
-
-              } -->
+              
           </ul>
         </div>
         <div class="col-md-4">
+          <form action="/List" method="get">
+            <button type='submit' class='btn btn-info'><em>Go back</em></button>
+          </form>
+          <br>
           <form action="/List/AddItem" method="get">
             <button type='submit' class='btn btn-info'><em>Add another item</em></button>
           </form>

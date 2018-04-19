@@ -11,7 +11,7 @@
       <h3><em>Add an item to the list</em></h3>
       <div class="row">
         <div class="col-md-6">
-          <form action='/createitem' method="post">
+          <form action='/List/CreateItem' method="post">
             <div class='form-group'>
               <label for='item'>Item</label>
               <input id='item' name='item' class='form-control' type='text'>
@@ -29,8 +29,14 @@
               <input id='importance' name='importance' class='form-control' type='text'>
             </div>
             <button type='submit' class='btn btn-info'>Create Item</button>
-            <button type='submit' class='btn btn-info'><a href="/list"><em>See List</em></a></button>
-            <button type='submit' class='btn btn-info'><a href="/"><em>Home</em></a></button>
+          </form>
+          <br>
+          <form action="/List" method="get">
+            <button type="submit" class="btn btn-info"><em>See List</em></button>
+          </form>
+          <br>
+          <form action="/" method="get">
+            <button type="submit" class="btn btn-info"><em>Home</em></button>
           </form>
         </div>
       </div>

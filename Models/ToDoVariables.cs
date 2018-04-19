@@ -61,10 +61,14 @@ namespace ToDoList.Models
     }
     public int GetId()
     {
-      return _id;
+      return _id + 1;
     }
 
     public static List<ToDoVariables> GetAll()
+    {
+      return _instances;
+    }
+    public static List<ToDoVariables> Find()
     {
       return _instances;
     }
