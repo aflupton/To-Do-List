@@ -12,35 +12,34 @@ namespace ToDoList.Controllers
       public ActionResult List()
       {
         List<Item> allItems = Item.GetAll();
-        return View("/Items/List", allItems);
+        return View(allItems);
       }
 
       [HttpGet("/Items/AddItem")]
       public ActionResult CreateForm()
       {
-        return View("/Items/AddItem");
+        return View();
       }
 
-      [HttpPost("/Categories/CreateItem")]
-      public ActionResult CreateItem()
+      [HttpGet("/Categories/{categoryId}/Items/New")]
+      public ActionResult CreateForm(int categoryId)
+        {
+          Dictionary<string, object> model = new Dictionary<string, object>();
+          Category category = Category.Find(categoryId);
+          return View(category);
+        }
+
+      [HttpGet("/Categories/{categoryId}/Items/{itemId}")]
+      public ActionResult Details(int categoryId, int itemId)
       {
-         var type = (Request.Form["item"]);
-         var date = (Request.Form["date"]);
-         var description = (Request.Form["description"]);
-         var importance = (Request.Form["importance"]);
-         Item newItem = new Item(type, date, description, importance);
-         newItem.Save();
-         List<Item> allItems = Item.GetAll();
-         return View("/Items/List", allItems);
+        Item item = Item.Find(itemId);
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Category category = Category.Find(categoryId);
+        model.Add("item", item);
+        model.Add("category", category);
+        return View(item);
       }
-
-      // [HttpGet("/List/Details/{id}")]
-      // public ActionResult Details(int id)
-      // {
-      //   Item item = Item.Find(id);
-      //   return View("Details", item);
-      // }
-
+      
       [HttpGet("/Items/Delete")]
       public ActionResult Delete()
       {

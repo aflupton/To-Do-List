@@ -11,20 +11,13 @@ namespace ToDoList.Controllers
       public ActionResult Index()
       {
         List<Category> allCategories = Category.GetAll();
-        return View("/Categories/Index", allCategories);
+        return View(allCategories);
       }
-
-      // [HttpGet("/Categories/New")]
-      // public ActionResult List()
-      // {
-      //
-      //   return View();
-      // }
 
       [HttpPost("/Categories/AddCategory")]
       public ActionResult CreateForm()
       {
-        return View("/Categories/Create");
+        return View();
       }
 
       [HttpPost("/Categories")]
@@ -42,39 +35,28 @@ namespace ToDoList.Controllers
         Dictionary<string, object> model = new Dictionary<string, object>();
         Category selectedCategory = Category.Find(id);
         List<Item> categoryItems = selectedCategory.GetItems();
-        model.Add("Category", selectedCategory);
-        model.Add("Items", categoryItems);
+        model.Add("category", selectedCategory);
+        model.Add("items", categoryItems);
         return View(model);
-      }
-      [HttpGet("/Categories/{categoryId}/Items/New")]
-      public ActionResult CreateForm(int categoryId)
-        {
-          Dictionary<string, object> model = new Dictionary<string, object>();
-          Category category = Category.Find(categoryId);
-          return View(category);
-        }
-      [HttpGet("/Categories/{categoryId}/Items/{itemId}")]
-      public ActionResult Details(int categoryId, int itemId)
-      {
-        Item item = Item.Find(itemId);
-        Dictionary<string, object> model = new Dictionary<string, object>();
-        Category category = Category.Find(categoryId);
-        model.Add("Item", item);
-        model.Add("Category", category);
-        return View(item);
       }
 
       [HttpPost("/Items")]
       public ActionResult CreateItem()
       {
         Dictionary<string, object> model = new Dictionary<string, object>();
-        Category foundCategory = Category.Find(Int32.Parse(Request.Form("category-id")));
-        string itemDescription = Request.Form("item-description");
-        Item newItem = new Item(itemDescription);
+        Category foundCategory = Category.Find(Int32.Parse(Request.Form["category-id"]));
+        var type = (Request.Form["item"]);
+        var date = (Request.Form["date"]);
+        var description = (Request.Form["description"]);
+        var importance = (Request.Form["importance"]);
+        Item newItem = new Item(type, date, description, importance);
+        newItem.Save();
+        List<Item> allItems = Item.GetAll();
+        return View("/Items/List", allItems);
         foundCategory.AddItem(newItem);
         List<Item> categoryItems = foundCategory.GetItems();
-        model.Add("Items", categoryItems);
-        model.Add("Category", foundCategory);
+        model.Add("items", categoryItems);
+        model.Add("category", foundCategory);
         return View("Details", model);
       }
 

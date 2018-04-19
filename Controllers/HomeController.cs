@@ -10,7 +10,7 @@ namespace ToDoList.Controllers
       [HttpGet("/")]
       public ActionResult Index()
       {
-        return View("/Items/Index");
+        return View("Index");
       }
 
 
