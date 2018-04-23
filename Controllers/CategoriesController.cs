@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Models;
 
@@ -45,11 +45,11 @@ namespace ToDoList.Controllers
       {
         Dictionary<string, object> model = new Dictionary<string, object>();
         Category foundCategory = Category.Find(Int32.Parse(Request.Form["category-id"]));
-        var type = (Request.Form["item"]);
+        var item = (Request.Form["item"]);
         var date = (Request.Form["date"]);
         var description = (Request.Form["description"]);
         var importance = (Request.Form["importance"]);
-        Item newItem = new Item(type, date, description, importance);
+        Item newItem = new Item(item, date, description, importance);
         newItem.Save();
         List<Item> allItems = Item.GetAll();
         return View("/Items/List", allItems);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace ToDoList.Models
@@ -5,30 +6,30 @@ namespace ToDoList.Models
   public class Item
   {
     public static List<Item> _instances = new List<Item> {};
-    private string _type;
+    private string _item;
     private string _date;
     private string _description;
     private string _importance;
     private int _id;
 
 
-    public Item(string type, string date, string description, string importance)
+    public Item(string item, string date = "0", string description = "null", string importance = "null")
       {
-        _type = type;
+        _item = item;
         _date = date;
         _description = description;
         _importance = importance;
         _id = _instances.Count;
       }
 
-    public string GetType()
+    public string GetItem()
     {
-      return _type;
+      return _item;
     }
 
-    public void SetType(string newType)
+    public void SetItem(string newItem)
     {
-      _type = newType;
+      _item = newItem;
     }
 
     public string GetDate()
@@ -79,6 +80,11 @@ namespace ToDoList.Models
     public void Save()
     {
       _instances.Add(this);
+    }
+
+    public static void ClearAll()
+    {
+      _instances.Clear();
     }
 
   }
